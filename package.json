@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:html": "mkdir -p assets && cp -R assets build/ && marp build --html ./slides.md -o build/index.html",
+    "serve": "http-server build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Shinya Ishikawa <ishikawa.s.1027@gmail.com> (https://meganetaaan.github.io/)",
   "license": "ISC",
   "devDependencies": {
-    "@marp-team/marp-cli": "^3.4.0"
+    "@marp-team/marp-cli": "^3.4.0",
+    "http-server": "^14.1.1"
   }
 }

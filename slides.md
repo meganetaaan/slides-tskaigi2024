@@ -38,6 +38,22 @@ TypeScriptで作る<br>コミュニケーションロボット
 
 ---
 
+### DEMO
+
+---
+
+### AIｽﾀｯｸﾁｬﾝ
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/6lO3xe_12So?si=xoEuPlS9BXM_HPNp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
+### AIｽﾀｯｸﾁｬﾝ ... 😮‍💨
+
+<iframe width="400" height="500" src="https://www.youtube.com/embed/dmsD9_qfeu0" title="Claude3 Opus made Stack-chan a cynic😮‍💨" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
 ### オープンソースのコミュニケーションロボット
 
 - Apache v2.0 で公開
@@ -162,6 +178,28 @@ TypeScriptで作る<br>コミュニケーションロボット
 - テスト: 使えるはず
 - その他
   - ビジュアルプログラミングプラットフォームのNode-REDでModdableのコードを生成できる！
+
+---
+
+### npm
+
+- Moddableのパッケージ管理ツール `mcpack` 経由で利用可能
+
+---
+
+### Linter/Formatter
+
+---
+
+### Wasm
+
+- Wasmビルド -> ブラウザ上で画面をプレビュー
+
+<iframe overflow="hidden" class="left" width="420px" height="410px" src="./assets/html/render-face/index.html"></iframe>
+
+---
+
+### Node-RED
 
 ---
 
