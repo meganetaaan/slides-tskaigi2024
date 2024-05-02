@@ -26,7 +26,7 @@ jobs:
       - name: Build HTML
         uses: docker://marpteam/marp-cli:v3.0.2
         with:
-          args: slides.md -o build/index.html
+          args: --html slides.md -o build/index.html
         env:
           MARP_USER: root:root
       - name: Deploy preview
