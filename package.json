@@ -1,0 +1,15 @@
+{
+  "name": "slides-tskaigi2024",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Shinya Ishikawa <ishikawa.s.1027@gmail.com> (https://meganetaaan.github.io/)",
+  "license": "ISC",
+  "devDependencies": {
+    "@marp-team/marp-cli": "^3.4.0"
+  }
+}
