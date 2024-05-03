@@ -137,10 +137,19 @@ TypeScriptで作る<br>コミュニケーションロボット
 
 ### マイコンの世界
 
-- シングルボードコンピュータとは異なる
-- 一段性能が劣る
-- LinuxのようなOSを搭載
-（Raspberry Pi Zero2とESP32S3の性能を比較する）
+- リソースが限られている
+- LinuxのようなOSを搭載していない
+
+<style scoped>
+table {
+  font-size: 0.8em;
+}
+</style>
+
+| 製品特性 | Raspberry Pi Zero 2W                           | M5Stack CoreS3                                  |
+|----------|------------------------------------------------|------------------------------------------|
+| CPUクロック | 1GHz (クアッドコア ARM Cortex-A53)               | 最大240MHz (デュアルコア Xtensa LX7)      |
+| メモリ    | 512MB RAM                                      | 512KB SRAM<br>(外部に8MB PSRAM可能)          |
 
 ---
 
@@ -155,7 +164,30 @@ TypeScriptで作る<br>コミュニケーションロボット
 - Ecma-419 （組み込み向けJavaScript）
 - 現在第2版が出てる: https://419.ecma-international.org/
 
-サンプルコード（`examples/io/digital`より）
+---
+
+### Ecma-419: 入出力
+
+- ネットワークインタフェース (WiFi & Ethernet)
+- DNS
+- HTTP
+- MQTT
+- WebSocket
+
+---
+
+### Ecma-419: ネットワーク
+
+- I/O 非同期メソッド
+- Sensor
+- Real Time Clock
+
+https://x.com/hipsterbrown/status/1674520747975344129
+
+---
+
+### サンプルコード（`examples/io/digital`より）
+
 ```
 ```
 
