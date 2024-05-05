@@ -110,9 +110,26 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ### コミュニティの活動: お誕生日会
 
-- 毎年やっているｽﾀｯｸﾁｬﾝオンリーのカンファレンス
-- 1歳（参加者20人）->2歳（参加者50人）
-- ケーキ！ピニャータ！
+- __ｽﾀｯｸﾁｬﾝの誕生日は7月2日__
+- 毎年やっているｽﾀｯｸﾁｬﾝオンリーイベント
+- 「お誕生日会」のコンセプトに従って楽しくお祝い
+- LT大会、お祝いのビデオメッセージ、交流会、抽選会など
+
+---
+
+- 1歳の誕生日
+- 参加者20人
+- ｽﾀｯｸﾁｬﾝケーキでお祝い！
+
+![bg right:60%](assets/images/birthday_1st.jpg)
+
+---
+
+- 2歳の誕生日
+- ⏫参加者50人
+- ｽﾀｯｸﾁｬﾝピニャータを割ってお祝い！
+
+![bg right:60%](assets/images/birthday_2nd.jpg)
 
 ---
 
@@ -124,6 +141,37 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ---
 
+<style scoped>
+ul {
+  background-color: #000a;
+  width: 60%;
+  font-size: 0.8em;
+}
+</style>
+
+- メイカーフェア東京
+- 展示＋キット販売
+
+![bg](assets/images/mftokyo_23.jpg)
+
+---
+
+<style scoped>
+ul {
+  background-color: #000a;
+  width: 60%;
+  font-size: 0.8em;
+}
+</style>
+
+- メイカーフェア深セン
+- ししかわが皆さんの作品を預かり✈
+- M5StackとNT深センのブースを間借り
+
+![bg](assets/images/mfshenzhen1.jpg)
+![bg](assets/images/mfshenzhen2.jpg)
+
+---
 ### ｽﾀｯｸﾁｬﾝはTypeScriptで動く
 
 - ｽﾀｯｸﾁｬﾝ本体で動くソースコードはすべてModdable
