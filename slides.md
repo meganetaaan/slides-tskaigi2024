@@ -78,23 +78,134 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ---
 
-### オープンソースのコミュニケーションロボット
+### Motivation
 
-- Apache v2.0 で公開
-  - 厳密にいうと回路や外装のデザインには著作権無いらしいが、製作者のオープンなスタンスを示すために付けている
-  - 商用、非商用問わず利用可能
-  - 実際、公開されているデータをもとに独自の変更を加えたり、変更したバージョンをキット化して販売する人も出てきている
+<style>
+  .masked-element {
+    background-color: var(--color-foreground); /* 黄色い線色 */
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-mode: alpha;
+  }
+</style>
 
-<table>
-  <tr>
-    <td><img src="/assets/images/closed_robot.jpg"></img></td>
-    <td><img src="/assets/images/open_robot.jpg"></img></td>
-  </tr>
-</table>
+<style scoped>
+  .closed-robot1 {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/closed_robot1.png');
+  }
+</style>
+
+クローズドなロボット...内部のプログラムやバックエンドが非公開
+<div class="masked-element closed-robot1"></div>
 
 ---
 
-### ｽﾀｯｸﾁｬﾝとコミュニティ
+### Motivation
+
+<style scoped>
+  .closed-robot2 {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/closed_robot2.png');
+  }
+</style>
+
+クローズドなロボットは、サービス終了とともにコミュニケーション能力を失う
+<div class="masked-element closed-robot2"></div>
+
+---
+
+### Motivation
+
+<style scoped>
+  .why-closed {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/why_closed.png');
+  }
+</style>
+
+自分のロボットと永く暮らすには？
+▷自分でメンテできるように全て公開してしまえばいい！
+<div class="masked-element why-closed"></div>
+
+---
+
+### Motivation
+
+<style scoped>
+  .container {
+    display: flex;
+    height: 500px;
+    gap: 30px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .closed {
+    width: 500px;
+    height: 300px;
+    mask-image: url('assets/images/closed_robot.png');
+  }
+  .open {
+    width: 500px;
+    height: 300px;
+    mask-image: url('assets/images/open_robot.png');
+  }
+</style>
+「誰もがユーザであり、同時に開発者でもある」
+
+<div class="container">
+  <div class="masked-element closed"></div>
+  <div>👉</div>
+  <div class="masked-element open"></div>
+</div>
+
+---
+
+### ｽﾀｯｸﾁｬﾝの特徴「すべてがオープン」
+
+- オープンな仕様
+- オープンなプロセス
+- オープンなコミュニティ
+
+---
+
+### オープンな仕様
+
+<style scoped>
+  .apache {
+    width: 500px;
+    height: 300px;
+    mask-image: url('assets/images/apache.png');
+  }
+</style>
+
+- Apache v2.0 で公開
+  - 商用、非商用問わず利用可能
+  - 改造＆キット化して販売する人も
+<div class="masked-element apache"></div>
+<!-- ※厳密にいうと回路や外装のデザインには著作権無いらしいが、製作者のオープンなスタンスを示すために付けている -->
+
+---
+
+### オープンなプロセス
+
+- 製作のようすを細かく発信
+  - Twitter #ｽﾀｯｸﾁｬﾝ
+  - Hackaday.io
+- 悩みや失敗もオープンに
+  - モジャった
+  - バグった
+  - 基板燃えた
+
+![bg right](assets/images/togetter.png)
+
+---
+
+### オープンなコミュニティ
 
 - ｽﾀｯｸﾁｬﾝのオープンな精神に共感した開発者が集まってコミュニティを形成した
 - 昨年ChatGPTと接続した「AIｽﾀｯｸﾁｬﾝ」の登場で爆発的に拡大
