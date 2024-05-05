@@ -17,9 +17,10 @@ TypeScriptで作る<br>コミュニケーションロボット
 
 ## 自己紹介
 
-- ししかわ
-- Twitterのアカウントを凍結されている
-  - @stack_chan 運用中
+- ![width:120px](./assets/images/meganetaaan.jpg)ししかわ @meganetaaan
+  - Twitterのアカウントを凍結されている
+  - ｽﾀｯｸﾁｬﾝを作っている
+- ![width:120px](./assets/images/stack_chan_twitter.jpg)ｽﾀｯｸﾁｬﾝ [@stack_chan](https://twitter.com/stack_chan)
 
 ---
 
@@ -31,10 +32,33 @@ TypeScriptで作る<br>コミュニケーションロボット
 
 ## ｽﾀｯｸﾁｬﾝ
 
-- オープンソースのコミュニケーションロボット
+- 「コミュニケーションロボットをあなたの手に」
 - https://github.com/stack-chan/stack-chan
 
 ![w:600](./assets/images/stack_chan.jpg)
+
+<!--
+はじめまして！これはｽﾀｯｸﾁｬﾝです。
+ｽﾀｯｸﾁｬﾝはオープンソースで手乗りサイズのカワイイロボットです。
+キャッチフレーズは「コミュニケーションロボットを、あなたの手に。
+Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本語で小さい子供を呼ぶときの敬称である「ちゃん」を足したものです。
+親しみをこめて半角カナで表現しています。
+-->
+
+---
+
+### ｽﾀｯｸﾁｬﾝの機能
+
+- 表情
+- 首振り
+- 発話
+- 対話
+- 顔認識 (開発中)
+
+<!--
+ｽﾀｯｸﾁｬﾝはコミュニケーションロボットの基本的な機能を提供していて、
+これらの機能をベースにユーザ自身が自分でアプリケーションを構築していけます。
+-->
 
 ---
 
@@ -60,6 +84,13 @@ TypeScriptで作る<br>コミュニケーションロボット
   - 厳密にいうと回路や外装のデザインには著作権無いらしいが、製作者のオープンなスタンスを示すために付けている
   - 商用、非商用問わず利用可能
   - 実際、公開されているデータをもとに独自の変更を加えたり、変更したバージョンをキット化して販売する人も出てきている
+
+<table>
+  <tr>
+    <td><img src="/assets/images/closed_robot.jpg"></img></td>
+    <td><img src="/assets/images/open_robot.jpg"></img></td>
+  </tr>
+</table>
 
 ---
 
@@ -113,6 +144,10 @@ TypeScriptで作る<br>コミュニケーションロボット
 - Node.jsのパッケージ管理やLint、テストなどのエコシステムを流用したい
 - 「Webの言語を使ってロボットを制御したい」
 
+<!-- 
+M5Stackには機能拡張のための多彩なモジュールやユニットがありますが、その制御のコードはArduino、つまりC/C++や、MicroPythonというPythonのサブセットで提供されています。どちらにも馴染みがない場合は、言語の習得自体が物作りのハードルになります。
+-->
+
 ---
 
 ### 使い方
@@ -144,9 +179,72 @@ TypeScriptで作る<br>コミュニケーションロボット
 
 ---
 
-### Moddable SDKはマイコンの環境に最適化されている
+### マイコンでTypeScript開発：Moddable SDK
 
 - フットプリントがわずか
+- 最新のJavaScript（ECMAScript）に準拠
+- マルチデバイス対応
+  - PC/マイコン両方で動く
+  - M5Stack, Raspberry Pi Picoなどに対応
+- グラフィック機能が充実
+  - 画像や文字の表示
+  - アニメーション
+  - アウトライン描画
+
+<!--
+最新のJavaScript（ECMAScript）に対応している：ModdableのJavaScriptエンジン「xs」は最新のECMAScriptに対応しています。つまりM5Stackの中でフル機能のJavaScriptが使えます。const、letやオブジェクトの分割代入、async、awaitまで揃っています。もしWebと連携する何かをM5Stackで作りたいなら、サーバ側のコードも、M5StackのコードもすべてJavaScriptで統一することだって可能です。
+-->
+
+---
+
+### 極小JavaScriptエンジン「XS」
+
+- ModdableのコアとなるJavaScriptエンジン
+- EcmaScriptの最新仕様に準拠
+  - [test262](https://github.com/tc39/test262)の言語機能セクションの __99.41%__ をパスしている
+
+<!-- 余談だがC言語による小さいJavaScriptエンジンの実装として参考になる。内部実装に関するドキュメントも充実している。 -->
+
+---
+
+### Moddableのコード例：言語機能
+
+```JavaScript
+class Counter {
+  // プライベートフィールドと初期化子
+  #tick;
+  #count = 0;
+  constructor(option = {}) {
+    // オプショナルチェインとNull合体演算子
+    this.#tick = option?.tick ?? 1
+  }
+  // getter/setter
+  get count() {
+    return this.#count
+  }
+  increment() {
+    this.#count++
+  }
+  decrement() {
+    this.#count--
+  }
+}
+```
+
+---
+
+### Moddable SDKの環境構築
+
+- Node.js >= v16
+- あとは`xs-dev`で一発
+  - https://xs-dev.js.org/
+
+```
+npx xs-dev setup
+npx xs-dev setup --device esp32
+```
+
+- 関連ツールが`$HOME/.local/share/`にインストールされる
 
 ---
 
@@ -158,6 +256,33 @@ TypeScriptで作る<br>コミュニケーションロボット
 サンプルコード（`examples/io/digital`より）
 ```
 ```
+
+---
+
+### UIフレームワーク「piu」「commodetto」
+
+- Moddableに同梱のUIフレームワーク
+- モダンなUI構築のための機能が全部入り
+  - ✅ 文字/画像
+  - ✅ __アウトライン描画__
+  - ✅ サウンド
+  - ✅ タッチ入力
+  - ✅ アニメーション/トランジション
+  - ✅ レスポンシブ
+  - ✅ コンポーネント指向
+
+---
+
+<table>
+  <tr>
+    <td>ドラッグ＆ドロップ<br><img src="/assets/images/piu_dnd.gif"></img></td>
+    <td>トランジション<br><img src="/assets/images/piu_transition.gif"></img></td>
+  </tr>
+  <tr>
+    <td>スクロール<br><img src="/assets/images/piu_scroll.gif"></img></td>
+    <td>国際化<br><img src="/assets/images/piu_i18n.gif"></img></td>
+  </tr>
+</table>
 
 ---
 
@@ -227,3 +352,18 @@ TypeScriptで作る<br>コミュニケーションロボット
     - Moddable版試してみてね！
   - Moddable日本開発者コミュニティ
     - Discordでワイワイ
+
+---
+
+### Discord
+
+- ![width:200px](/assets/images/qr_stack_chan.png) Stack-chan: https://discord.gg/HamVFhqjS9 
+- ![width:200px](/assets/images/qr_moddable.png) Moddable dev JP: https://discord.gg/7vT4Mde9u2
+
+---
+
+### 参考
+
+- 公式ドキュメント（GitHub）
+- 書籍「IoT Development for ESP32 and ESP8266 with JavaScript: A Practical Guide to XS and the Moddable SDK (English Edition)」
+- 書籍「実践Moddable」
