@@ -165,21 +165,47 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ---
 
-- Apache v2.0 で公開
-  - 厳密にいうと回路や外装のデザインには著作権無いらしいが、製作者のオープンなスタンスを示すために付けている
-  - 商用、非商用問わず利用可能
-  - 実際、公開されているデータをもとに独自の変更を加えたり、変更したバージョンをキット化して販売する人も出てきている
+### ｽﾀｯｸﾁｬﾝの特徴「すべてがオープン」
 
-<table>
-  <tr>
-    <td><img src="/assets/images/closed_robot.jpg"></img></td>
-    <td><img src="/assets/images/open_robot.jpg"></img></td>
-  </tr>
-</table>
+- オープンな仕様
+- オープンなプロセス
+- オープンなコミュニティ
 
 ---
 
-### ｽﾀｯｸﾁｬﾝとコミュニティ
+### オープンな仕様
+
+<style scoped>
+  .apache {
+    width: 500px;
+    height: 300px;
+    mask-image: url('assets/images/apache.png');
+  }
+</style>
+
+- Apache v2.0 で公開
+  - 商用、非商用問わず利用可能
+  - 改造＆キット化して販売する人も
+<div class="masked-element apache"></div>
+<!-- ※厳密にいうと回路や外装のデザインには著作権無いらしいが、製作者のオープンなスタンスを示すために付けている -->
+
+---
+
+### オープンなプロセス
+
+- 製作のようすを細かく発信
+  - Twitter #ｽﾀｯｸﾁｬﾝ
+  - Hackaday.io
+- 悩みや失敗もオープンに
+  - モジャった
+  - バグった
+  - 基板燃えた
+
+![bg right](assets/images/togetter.png)
+
+---
+
+### オープンなコミュニティ
 
 - ｽﾀｯｸﾁｬﾝのオープンな精神に共感した開発者が集まってコミュニティを形成した
 - 昨年ChatGPTと接続した「AIｽﾀｯｸﾁｬﾝ」の登場で爆発的に拡大
