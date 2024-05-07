@@ -331,27 +331,42 @@ M5Stackには機能拡張のための多彩なモジュールやユニットが�
 
 ### マイコンの世界
 
-- シングルボードコンピュータとは異なる
-- 一段性能が劣る
-- LinuxのようなOSを搭載
-（Raspberry Pi Zero2とESP32S3の性能を比較する）
+- 小型、軽量、低コスト
+- 計算リソースが限られている
+- リアルタイム処理が得意（FreeRTOSなど）
 
+<style scoped>
+table {
+  font-size: 0.8em;
+}
+</style>
+
+| 製品特性 | Raspberry Pi Zero 2 W                           | M5Stack CoreS3                                  |
+|----------|------------------------------------------------|------------------------------------------|
+| CPUクロック | 1GHz (クアッドコア ARM Cortex-A53)               | 最大240MHz (デュアルコア Xtensa LX7)      |
+| メモリ    | 512MB RAM                                      | 512KB SRAM<br>(外部に8MB PSRAM可能)          |
+
+<!--
+ラズパイなどのシングルボードコンピュータに比べて非常に小型で、その分計算リソースが限られています。
+LinuxのようなOSを搭載せずFreeRTOSなどのリアルタイムOSを搭載します。
+-->
 ---
 
-### マイコンでTypeScript開発：Moddable SDK
+### Moddable SDK
 
-- フットプリントがわずか
+![moddable height:160px](assets/images/blue-moddable.png)
+
+- 組み込み向けJavaScript開発プラットフォーム
 - 最新のJavaScript（ECMAScript）に準拠
 - マルチデバイス対応
-  - PC/マイコン両方で動く
-  - M5Stack, Raspberry Pi Picoなどに対応
-- グラフィック機能が充実
-  - 画像や文字の表示
-  - アニメーション
-  - アウトライン描画
+  - M5StackシリーズやRaspberry Pi Picoなどで動作
+- __TypeScriptに対応__
 
 <!--
 最新のJavaScript（ECMAScript）に対応している：ModdableのJavaScriptエンジン「xs」は最新のECMAScriptに対応しています。つまりM5Stackの中でフル機能のJavaScriptが使えます。const、letやオブジェクトの分割代入、async、awaitまで揃っています。もしWebと連携する何かをM5Stackで作りたいなら、サーバ側のコードも、M5StackのコードもすべてJavaScriptで統一することだって可能です。
+-->
+<!--
+家電の操作画面に採用された（冷蔵庫、マッサージガン、カメラ）
 -->
 
 ---
@@ -366,14 +381,19 @@ M5Stackには機能拡張のための多彩なモジュールやユニットが�
 
 ---
 
-### Moddableのコード例：言語機能
+<!-- _class: default -->
 
-```JavaScript
+フル機能のJavaScript(TypeScript)がスタンドアロンで動作する
+
+```ts
+type CounterProps = {
+  tick?: number;
+}
 class Counter {
   // プライベートフィールドと初期化子
-  #tick;
-  #count = 0;
-  constructor(option = {}) {
+  #tick: number;
+  #count: number = 0;
+  constructor(option: CounterProps = {}) {
     // オプショナルチェインとNull合体演算子
     this.#tick = option?.tick ?? 1
   }
@@ -382,10 +402,10 @@ class Counter {
     return this.#count
   }
   increment() {
-    this.#count++
+    this.#count += this.#tick
   }
   decrement() {
-    this.#count--
+    this.#count -= this.#tick
   }
 }
 ```
@@ -407,13 +427,89 @@ npx xs-dev setup --device esp32
 
 ---
 
-### Moddable SDKの組み込み向け機能の仕様が標準化されている
+### Ecma-419
 
-- Ecma-419 （組み込み向けJavaScript）
-- 現在第2版が出てる: https://419.ecma-international.org/
+- 組み込みシステム向けAPIの仕様
+- https://419.ecma-international.org/
+- Moddableで実装されている
 
-サンプルコード（`examples/io/digital`より）
+---
+
+### Ecma-419: ハードウェア
+
+- ハードウェアプロトコル
+  - Digital/Analog
+  - PWM
+  - SPI
+  - I2C
+  - Serial
+- ドライバ
+  - Sensor
+  - Display
+  - RTC(Real Time Clock)
+
+---
+
+<!-- _class: default -->
+例（`examples/io/digital`より）
+
+```js
+const Digital = device.io.Digital;
+const led = new Digital({
+   pin: device.pin.led,
+   mode: Digital.Output,
+});
+led.write(1);
+
+let state = 0;
+System.setInterval(() => {
+	led.write(state);
+	state ^= 1;
+}, 200);
 ```
+
+---
+
+### Ecma-419: ネットワーク
+
+- ネットワークインタフェース (WiFi & Ethernet)
+- TCP/UDP
+- DNS
+- HTTP
+- MQTT
+- WebSocket
+
+---
+
+<!-- _class: default  -->
+
+例（`examples/io/tcp/fetch`より）
+
+```js
+import { fetch, Headers } from "fetch";
+import { URLSearchParams } from "url";
+
+const headers = new Headers([
+	['Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8'],
+	["Date", Date()],
+	["User-Agent", "ecma-419 test"]
+]);
+const body = new URLSearchParams([
+	["Date", Date()],
+	["Input", "This is no input!"]
+]);
+
+fetch("http://httpbin.org/post", { method:"POST", headers, body })
+.then(response => {
+	trace(`\n${response.url} ${response.status} ${response.statusText}\n\n`);
+	response.headers.forEach((value, key) => trace(`${key}: ${value}\n`));
+	trace("\n");
+	return response.json();
+})
+.then(json => {
+	trace(JSON.stringify(json, null, "\t"));
+	trace("\n");
+});
 ```
 
 ---
@@ -434,44 +530,140 @@ npx xs-dev setup --device esp32
 
 <table>
   <tr>
-    <td>ドラッグ＆ドロップ<br><img src="/assets/images/piu_dnd.gif"></img></td>
-    <td>トランジション<br><img src="/assets/images/piu_transition.gif"></img></td>
+    <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
+    <td>トランジション<br><img src="assets/images/piu_transition.gif"></img></td>
   </tr>
   <tr>
-    <td>スクロール<br><img src="/assets/images/piu_scroll.gif"></img></td>
-    <td>国際化<br><img src="/assets/images/piu_i18n.gif"></img></td>
+    <td>スクロール<br><img src="assets/images/piu_scroll.gif"></img></td>
+    <td>国際化<br><img src="assets/images/piu_i18n.gif"></img></td>
   </tr>
 </table>
 
 ---
 
+## ｽﾀｯｸﾁｬﾝ ♥ Moddable SDK
+
+![width:80%](assets/images/stack_chan_v_moddable.png)
+
+---
+
+### 各機能モジュールの型定義を用意
+
+<!-- _class: default -->
+
+```ts
+/**
+ * The Driver for the actuator
+ */
+export type Driver = {
+  applyRotation: (ori: Rotation, time?: number) => Promise<void>
+  getRotation: () => Promise<Maybe<Rotation>>
+  setTorque: (torque: boolean) => Promise<void>
+  onAttached?: () => void
+  onDetached?: () => void
+}
+
+/**
+ * The text-to-speech engine
+ */
+export type TTS = {
+  stream: (text: string) => Promise<void>
+  onPlayed: (volume: number) => void
+  onDone: () => void
+}
+
+/**
+ * The display renderer
+ */
+export type Renderer = {
+  update: (interval: number, faceContext: Readonly<FaceContext>) => void
+  addDecorator(decorator: FaceDecorator): void
+  removeDecorator(decorator: FaceDecorator): void
+}
+```
+---
+
+### 効用①：複数の実装が型安全に書ける
+
+![bg width:600px right](assets/images/modules.drawio.png)
+
+```json
+{
+    "config": {
+        "tts": {
+            "type": "voicevox"
+        },
+        "driver": {
+            "type": "dynamixel"
+        }
+    }
+}
+```
+設定で実装を切り替え
+
+---
+
+### 効用②：mod（ユーザアプリケーション）が型安全に書ける
+
+<style scoped>
+  .mod {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/host_and_mod.png');
+  }
+</style>
+
+<div class="masked-element mod"></div>
+
+---
+
+### さらに：Pull Requestももらえた🚀
+
+![](assets/images/pr_add_tts_openai.png)
+![](assets/images/pr_add_tts_elevenlabs.png)
+![bg width:600px right](assets/images/modules_contributed.drawio.png)
+
+<!--
+趣味のものつくり界隈だとそもそもgitでのコード管理も根付いていない場合が多く、コードの寄贈を受けるのが難しかった。
+GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発に引き込める点で効果を実感している。
+-->
+
+---
+
 ### 性能とのトレードオフ
 
-- 省メモリ指向
-- 細かい話だとMapの内部実装がHashMapじゃなくてListなのでランダムアクセスがO(n)
-- 性能が求められる箇所はC言語で実装し、JSのグルーコードを介してスクリプトから利用できる
+<style scoped>
+  ul {
+    font-size: 0.8em;
+  }
+</style>
+- Moddableは省メモリ指向
+  - xsエンジンのペナルティ
+  - Moddableのモジュールは実行速度よりメモリ効率を重視
+    - 細かい話だとMapの内部実装がHashMapじゃなくてListなのでランダムアクセスがO(n)
+- デバッガでプロファイリングが可能
+- 性能が求められる箇所は __Cで実装し、JavaScriptのコードから利用できる__
   - もちろんこのような関数に対しても型定義が用意されているし、自作も可能
+
+![bg width:100% right](assets/images/xsbug.png)
 
 ---
 
 ### Webのエコシステムとの親和性
 
-- TypeScript: ｽﾀｯｸﾁｬﾝのホストプログラムに適用済み
-  - anyはあります
-- ESLintとPrettier: （CI含め）使っている
-- テスト: 使えるはず
+- ✅TypeScript
+- ✅Linter/Formatter
+- ⬜テスト: IOをモックした単体テストを導入予定
 - その他
-  - ビジュアルプログラミングプラットフォームのNode-REDでModdableのコードを生成できる！
+  - ⬜npm
+  - ✅Wasm
+  - ⬜Node-RED
 
 ---
 
 ### npm
 
 - Moddableのパッケージ管理ツール `mcpack` 経由で利用可能
-
----
-
-### Linter/Formatter
 
 ---
 
@@ -485,18 +677,29 @@ npx xs-dev setup --device esp32
 
 ### Node-RED
 
+- ｽﾀｯｸﾁｬﾝ × ビジュアルプログラミングの可能性
+- [Blockyも使える](https://github.com/phoddie/node-red-mcu/discussions/126)
+
+![](assets/images/discuttion_blockly.png)
+
 ---
 
 ### まとめ：Moddableを使うとどうなるか
 
 - 操作性/学習性（Usability）↑↑↑
   - Web開発者がマイコンで動くアプリを開発できる
-- 互換性↑↑
-  - 異なる種類のマイコンに対応
-- アップデート容易性↑
-- セキュリティ↑
+  - TypeScriptの恩恵でチーム開発も捗る
+- 相互運用性↑↑
+  - 異なる種類のM5Stackに対応
+  - PCでデバッグ
 - 性能効率（Performance Efficiency）↓
   - C APIで補う
+
+<!--
+その他
+- アップデート容易性↑
+- セキュリティ↑
+-->
 
 ---
 
@@ -516,8 +719,8 @@ npx xs-dev setup --device esp32
 
 ### Discord
 
-- ![width:200px](/assets/images/qr_stack_chan.png) Stack-chan: https://discord.gg/HamVFhqjS9 
-- ![width:200px](/assets/images/qr_moddable.png) Moddable dev JP: https://discord.gg/7vT4Mde9u2
+- ![width:200px](assets/images/qr_stack_chan.png) Stack-chan: https://discord.gg/HamVFhqjS9 
+- ![width:200px](assets/images/qr_moddable.png) Moddable dev JP: https://discord.gg/7vT4Mde9u2
 
 ---
 
