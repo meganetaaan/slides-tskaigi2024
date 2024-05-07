@@ -558,7 +558,32 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ---
 
-### PRもらえた！
+### 効用①：複数の実装が型安全に書ける
+
+---
+
+### 効用②：mod（ユーザアプリケーション）が型安全に書ける
+
+<style scoped>
+  .mod {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/host_and_mod.png');
+  }
+</style>
+
+<div class="masked-element mod"></div>
+
+---
+
+<!-- _class: -->
+
+```ts
+```
+
+---
+
+### さらに：Pull Requestももらえた🚀
 
 ---
 
