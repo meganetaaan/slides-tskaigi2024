@@ -211,26 +211,27 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ### オープンなコミュニティ
 
-- ｽﾀｯｸﾁｬﾝのオープンな精神に共感した開発者が集まってコミュニティを形成した
-- 昨年ChatGPTと接続した「AIｽﾀｯｸﾁｬﾝ」の登場で爆発的に拡大
+<style scoped>
+  .open-community {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/open_community.png');
+  }
+</style>
+
+- 様々な界隈から「オープン」と「ｶﾜｲｲ」を共通項に大集合
+  - Maker
+  - ホビーロボット
+  - 生成AI
+  - ぬいの者
+- 「AIｽﾀｯｸﾁｬﾝ」の登場でさらに爆発的に拡大
 - DiscordやTwitterで活発に活動中
+
+<div class="open-community">
 
 ---
 
 ### コミュニティの活動: 制作
-
-<style scoped>
-  .protopedia {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 50%;
-  }
-  ul {
-    width: 60%;
-  }
-</style>
 
 - 作る
   - キットを購入して組み立てる
@@ -239,8 +240,7 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 - 愛でる
   - お外に連れ出す
   - イベントに出展する
-
-<iframe width="50%" class="protopedia" src="https://protopedia.net/material/833"></iframe>
+- 🔍[#ｽﾀｯｸﾁｬﾝ](https://twitter.com/search?q=%23%EF%BD%BD%EF%BE%80%EF%BD%AF%EF%BD%B8%EF%BE%81%EF%BD%AC%EF%BE%9D%20OR%20%EF%BD%BD%EF%BE%80%EF%BD%AF%EF%BD%B8%EF%BE%81%EF%BD%AC%EF%BE%9D%20OR%20%23stackchan%20OR%20%22Stack-chan%22&f=media)
 
 ---
 
@@ -319,14 +319,13 @@ ul {
 
 ---
 
-### Why: なぜTypeScriptを使おうと思った？
+### なぜTypeScript？
 
 - 自分が必要だったから
-- ししかわは元々Web開発者->ロボットベンチャー
-- C/C++のベストプラクティスと組み込み開発の知識を両方やらないといけない
-- マイコンのベンダが提供する独自IDE
-- Node.jsのパッケージ管理やLint、テストなどのエコシステムを流用したい
-- 「Webの言語を使ってロボットを制御したい」
+  - ししかわは元々Web開発者->ロボットベンチャー
+- C/C++のベストプラクティスと組み込み開発の知識を両方やらないといけなくて大変厳しい
+- 「使い慣れた言語で開発がしたい」「もう環境が来い」
+- Node.jsのパッケージ管理やLint、テストなどのエコシステムを流用できると尚可
 
 <!-- 
 M5Stackには機能拡張のための多彩なモジュールやユニットがありますが、その制御のコードはArduino、つまりC/C++や、MicroPythonというPythonのサブセットで提供されています。どちらにも馴染みがない場合は、言語の習得自体が物作りのハードルになります。
