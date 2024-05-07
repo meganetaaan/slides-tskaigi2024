@@ -360,6 +360,9 @@ table {
 <!--
 最新のJavaScript（ECMAScript）に対応している：ModdableのJavaScriptエンジン「xs」は最新のECMAScriptに対応しています。つまりM5Stackの中でフル機能のJavaScriptが使えます。const、letやオブジェクトの分割代入、async、awaitまで揃っています。もしWebと連携する何かをM5Stackで作りたいなら、サーバ側のコードも、M5StackのコードもすべてJavaScriptで統一することだって可能です。
 -->
+<!--
+家電の操作画面に採用された（冷蔵庫、マッサージガン、カメラ）
+-->
 
 ---
 
