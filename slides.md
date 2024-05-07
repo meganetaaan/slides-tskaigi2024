@@ -416,16 +416,53 @@ npx xs-dev setup --device esp32
 
 ---
 
-### Moddable SDKの組み込み向け機能の仕様が標準化されている
+### Ecma-419
 
-- Ecma-419 （組み込み向けJavaScript）
-- 現在第2版が出てる: https://419.ecma-international.org/
+- 組み込みシステム向けAPIの仕様
+- https://419.ecma-international.org/
+- Moddableで実装されている
 
 ---
 
-### Ecma-419: 入出力
+### Ecma-419: ハードウェア
+
+- ハードウェアプロトコル
+  - Digital/Analog
+  - PWM
+  - SPI
+  - I2C
+  - Serial
+- ドライバ
+  - Sensor
+  - Display
+  - RTC(Real Time Clock)
+
+---
+
+<!-- _class: -->
+例（`examples/io/digital`より）
+
+```js
+const Digital = device.io.Digital;
+const led = new Digital({
+   pin: device.pin.led,
+   mode: Digital.Output,
+});
+led.write(1);
+
+let state = 0;
+System.setInterval(() => {
+	led.write(state);
+	state ^= 1;
+}, 200);
+```
+
+---
+
+### Ecma-419: ネットワーク
 
 - ネットワークインタフェース (WiFi & Ethernet)
+- TCP/UDP
 - DNS
 - HTTP
 - MQTT
@@ -433,19 +470,35 @@ npx xs-dev setup --device esp32
 
 ---
 
-### Ecma-419: ネットワーク
+<!-- _class:  -->
 
-- I/O 非同期メソッド
-- Sensor
-- Real Time Clock
+例（`examples/io/tcp/fetch`より）
 
-https://x.com/hipsterbrown/status/1674520747975344129
+```js
+import { fetch, Headers } from "fetch";
+import { URLSearchParams } from "url";
 
----
+const headers = new Headers([
+	['Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8'],
+	["Date", Date()],
+	["User-Agent", "ecma-419 test"]
+]);
+const body = new URLSearchParams([
+	["Date", Date()],
+	["Input", "This is no input!"]
+]);
 
-### サンプルコード（`examples/io/digital`より）
-
-```
+fetch("http://httpbin.org/post", { method:"POST", headers, body })
+.then(response => {
+	trace(`\n${response.url} ${response.status} ${response.statusText}\n\n`);
+	response.headers.forEach((value, key) => trace(`${key}: ${value}\n`));
+	trace("\n");
+	return response.json();
+})
+.then(json => {
+	trace(JSON.stringify(json, null, "\t"));
+	trace("\n");
+});
 ```
 
 ---
