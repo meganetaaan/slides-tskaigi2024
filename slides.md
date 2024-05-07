@@ -381,6 +381,8 @@ LinuxのようなOSを搭載せずFreeRTOSなどのリアルタイムOSを搭載
 
 ---
 
+<!-- _class: default -->
+
 フル機能のJavaScript(TypeScript)がスタンドアロンで動作する
 
 ```ts
@@ -448,7 +450,7 @@ npx xs-dev setup --device esp32
 
 ---
 
-<!-- _class: -->
+<!-- _class: default -->
 例（`examples/io/digital`より）
 
 ```js
@@ -479,7 +481,7 @@ System.setInterval(() => {
 
 ---
 
-<!-- _class:  -->
+<!-- _class: default  -->
 
 例（`examples/io/tcp/fetch`より）
 
@@ -539,15 +541,6 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ---
 
-### 性能とのトレードオフ
-
-- Moddableは省メモリ指向
-- 細かい話だとMapの内部実装がHashMapじゃなくてListなのでランダムアクセスがO(n)
-- 性能が求められる箇所は __Cで実装し、JavaScriptのコードから利用できる__
-  - もちろんこのような関数に対しても型定義が用意されているし、自作も可能
-
----
-
 ## ｽﾀｯｸﾁｬﾝ ♥ Moddable SDK
 
 ![width:80%](assets/images/stack_chan_v_moddable.png)
@@ -556,9 +549,57 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ### 各機能モジュールの型定義を用意
 
+<!-- _class: default -->
+
+```ts
+/**
+ * The Driver for the actuator
+ */
+export type Driver = {
+  applyRotation: (ori: Rotation, time?: number) => Promise<void>
+  getRotation: () => Promise<Maybe<Rotation>>
+  setTorque: (torque: boolean) => Promise<void>
+  onAttached?: () => void
+  onDetached?: () => void
+}
+
+/**
+ * The text-to-speech engine
+ */
+export type TTS = {
+  stream: (text: string) => Promise<void>
+  onPlayed: (volume: number) => void
+  onDone: () => void
+}
+
+/**
+ * The display renderer
+ */
+export type Renderer = {
+  update: (interval: number, faceContext: Readonly<FaceContext>) => void
+  addDecorator(decorator: FaceDecorator): void
+  removeDecorator(decorator: FaceDecorator): void
+}
+```
 ---
 
 ### 効用①：複数の実装が型安全に書ける
+
+![bg width:600px right](assets/images/modules.drawio.png)
+
+```json
+{
+    "config": {
+        "tts": {
+            "type": "voicevox"
+        },
+        "driver": {
+            "type": "dynamixel"
+        }
+    }
+}
+```
+設定で実装を切り替え
 
 ---
 
@@ -576,35 +617,53 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ---
 
-<!-- _class: -->
+### さらに：Pull Requestももらえた🚀
 
-```ts
-```
+![](assets/images/pr_add_tts_openai.png)
+![](assets/images/pr_add_tts_elevenlabs.png)
+![bg width:600px right](assets/images/modules_contributed.drawio.png)
+
+<!--
+趣味のものつくり界隈だとそもそもgitでのコード管理も根付いていない場合が多く、コードの寄贈を受けるのが難しかった。
+GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発に引き込める点で効果を実感している。
+-->
 
 ---
 
-### さらに：Pull Requestももらえた🚀
+### 性能とのトレードオフ
+
+<style scoped>
+  ul {
+    font-size: 0.8em;
+  }
+</style>
+- Moddableは省メモリ指向
+  - xsエンジンのペナルティ
+  - Moddableのモジュールは実行速度よりメモリ効率を重視
+    - 細かい話だとMapの内部実装がHashMapじゃなくてListなのでランダムアクセスがO(n)
+- デバッガでプロファイリングが可能
+- 性能が求められる箇所は __Cで実装し、JavaScriptのコードから利用できる__
+  - もちろんこのような関数に対しても型定義が用意されているし、自作も可能
+
+![bg width:100% right](assets/images/xsbug.png)
 
 ---
 
 ### Webのエコシステムとの親和性
 
-- TypeScript: ｽﾀｯｸﾁｬﾝのホストプログラムに適用済み
-  - anyはあります
-- ESLintとPrettier: （CI含め）使っている
-- テスト: 使えるはず
+- ✅TypeScript
+- ✅Linter/Formatter
+- ⬜テスト: IOをモックした単体テストを導入予定
 - その他
-  - ビジュアルプログラミングプラットフォームのNode-REDでModdableのコードを生成できる！
+  - ⬜npm
+  - ✅Wasm
+  - ⬜Node-RED
 
 ---
 
 ### npm
 
 - Moddableのパッケージ管理ツール `mcpack` 経由で利用可能
-
----
-
-### Linter/Formatter
 
 ---
 
@@ -618,18 +677,29 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ### Node-RED
 
+- ｽﾀｯｸﾁｬﾝ × ビジュアルプログラミングの可能性
+- [Blockyも使える](https://github.com/phoddie/node-red-mcu/discussions/126)
+
+![](assets/images/discuttion_blockly.png)
+
 ---
 
 ### まとめ：Moddableを使うとどうなるか
 
 - 操作性/学習性（Usability）↑↑↑
   - Web開発者がマイコンで動くアプリを開発できる
-- 互換性↑↑
-  - 異なる種類のマイコンに対応
-- アップデート容易性↑
-- セキュリティ↑
+  - TypeScriptの恩恵でチーム開発も捗る
+- 相互運用性↑↑
+  - 異なる種類のM5Stackに対応
+  - PCでデバッグ
 - 性能効率（Performance Efficiency）↓
   - C APIで補う
+
+<!--
+その他
+- アップデート容易性↑
+- セキュリティ↑
+-->
 
 ---
 
