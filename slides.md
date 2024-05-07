@@ -347,17 +347,15 @@ table {
 
 ---
 
-### マイコンでTypeScript開発：Moddable SDK
+### Moddable SDK
 
-- フットプリントがわずか
+![moddable height:160px](assets/images/blue-moddable.png)
+
+- 組み込み向けJavaScript開発プラットフォーム
 - 最新のJavaScript（ECMAScript）に準拠
 - マルチデバイス対応
-  - PC/マイコン両方で動く
-  - M5Stack, Raspberry Pi Picoなどに対応
-- グラフィック機能が充実
-  - 画像や文字の表示
-  - アニメーション
-  - アウトライン描画
+  - M5StackシリーズやRaspberry Pi Picoなどで動作
+- __TypeScriptに対応__
 
 <!--
 最新のJavaScript（ECMAScript）に対応している：ModdableのJavaScriptエンジン「xs」は最新のECMAScriptに対応しています。つまりM5Stackの中でフル機能のJavaScriptが使えます。const、letやオブジェクトの分割代入、async、awaitまで揃っています。もしWebと連携する何かをM5Stackで作りたいなら、サーバ側のコードも、M5StackのコードもすべてJavaScriptで統一することだって可能です。
@@ -375,14 +373,17 @@ table {
 
 ---
 
-### Moddableのコード例：言語機能
+フル機能のJavaScript(TypeScript)がスタンドアロンで動作する
 
-```JavaScript
+```ts
+type CounterProps = {
+  tick?: number;
+}
 class Counter {
   // プライベートフィールドと初期化子
-  #tick;
-  #count = 0;
-  constructor(option = {}) {
+  #tick: number;
+  #count: number = 0;
+  constructor(option: CounterProps = {}) {
     // オプショナルチェインとNull合体演算子
     this.#tick = option?.tick ?? 1
   }
@@ -391,10 +392,10 @@ class Counter {
     return this.#count
   }
   increment() {
-    this.#count++
+    this.#count += this.#tick
   }
   decrement() {
-    this.#count--
+    this.#count -= this.#tick
   }
 }
 ```
@@ -532,10 +533,24 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ### 性能とのトレードオフ
 
-- 省メモリ指向
+- Moddableは省メモリ指向
 - 細かい話だとMapの内部実装がHashMapじゃなくてListなのでランダムアクセスがO(n)
-- 性能が求められる箇所はC言語で実装し、JSのグルーコードを介してスクリプトから利用できる
+- 性能が求められる箇所は __Cで実装し、JavaScriptのコードから利用できる__
   - もちろんこのような関数に対しても型定義が用意されているし、自作も可能
+
+---
+
+## ｽﾀｯｸﾁｬﾝ ♥ Moddable SDK
+
+![width:80%](assets/images/stack_chan_v_moddable.png)
+
+---
+
+### 各機能モジュールの型定義を用意
+
+---
+
+### PRもらえた！
 
 ---
 
