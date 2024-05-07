@@ -530,12 +530,12 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 <table>
   <tr>
-    <td>ドラッグ＆ドロップ<br><img src="/assets/images/piu_dnd.gif"></img></td>
-    <td>トランジション<br><img src="/assets/images/piu_transition.gif"></img></td>
+    <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
+    <td>トランジション<br><img src="assets/images/piu_transition.gif"></img></td>
   </tr>
   <tr>
-    <td>スクロール<br><img src="/assets/images/piu_scroll.gif"></img></td>
-    <td>国際化<br><img src="/assets/images/piu_i18n.gif"></img></td>
+    <td>スクロール<br><img src="assets/images/piu_scroll.gif"></img></td>
+    <td>国際化<br><img src="assets/images/piu_i18n.gif"></img></td>
   </tr>
 </table>
 
@@ -719,8 +719,8 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ### Discord
 
-- ![width:200px](/assets/images/qr_stack_chan.png) Stack-chan: https://discord.gg/HamVFhqjS9 
-- ![width:200px](/assets/images/qr_moddable.png) Moddable dev JP: https://discord.gg/7vT4Mde9u2
+- ![width:200px](assets/images/qr_stack_chan.png) Stack-chan: https://discord.gg/HamVFhqjS9 
+- ![width:200px](assets/images/qr_moddable.png) Moddable dev JP: https://discord.gg/7vT4Mde9u2
 
 ---
 
