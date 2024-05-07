@@ -55,6 +55,8 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 - 対話
 - 顔認識 (開発中)
 
+![bg height:100% right:30%](assets/images/cheerup.gif)
+
 <!--
 ｽﾀｯｸﾁｬﾝはコミュニケーションロボットの基本的な機能を提供していて、
 これらの機能をベースにユーザ自身が自分でアプリケーションを構築していけます。
@@ -63,6 +65,8 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 ---
 
 ### DEMO
+
+<!-- _class: lead -->
 
 ---
 
@@ -207,15 +211,36 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ### オープンなコミュニティ
 
-- ｽﾀｯｸﾁｬﾝのオープンな精神に共感した開発者が集まってコミュニティを形成した
-- 昨年ChatGPTと接続した「AIｽﾀｯｸﾁｬﾝ」の登場で爆発的に拡大
+<style scoped>
+  .open-community {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/open_community.png');
+  }
+</style>
+
+- 様々な界隈から「オープン」と「ｶﾜｲｲ」を共通項に大集合
+  - Maker
+  - ホビーロボット
+  - 生成AI
+  - ぬいの者
+- 「AIｽﾀｯｸﾁｬﾝ」の登場でさらに爆発的に拡大
 - DiscordやTwitterで活発に活動中
+
+<div class="open-community">
 
 ---
 
 ### コミュニティの活動: 制作
 
-- マイｽﾀｯｸﾁｬﾝ
+- 作る
+  - キットを購入して組み立てる
+  - 公開されているデータから自作する
+  - 完全自作する
+- 愛でる
+  - お外に連れ出す
+  - イベントに出展する
+- 🔍[#ｽﾀｯｸﾁｬﾝ](https://twitter.com/search?q=%23%EF%BD%BD%EF%BE%80%EF%BD%AF%EF%BD%B8%EF%BE%81%EF%BD%AC%EF%BE%9D%20OR%20%EF%BD%BD%EF%BE%80%EF%BD%AF%EF%BD%B8%EF%BE%81%EF%BD%AC%EF%BE%9D%20OR%20%23stackchan%20OR%20%22Stack-chan%22&f=media)
 
 ---
 
@@ -294,14 +319,13 @@ ul {
 
 ---
 
-### Why: なぜTypeScriptを使おうと思った？
+### なぜTypeScript？
 
 - 自分が必要だったから
-- ししかわは元々Web開発者->ロボットベンチャー
-- C/C++のベストプラクティスと組み込み開発の知識を両方やらないといけない
-- マイコンのベンダが提供する独自IDE
-- Node.jsのパッケージ管理やLint、テストなどのエコシステムを流用したい
-- 「Webの言語を使ってロボットを制御したい」
+  - ししかわは元々Web開発者->ロボットベンチャー
+- C/C++のベストプラクティスと組み込み開発の知識を両方やらないといけなくて大変厳しい
+- 「使い慣れた言語で開発がしたい」「もう環境が来い」
+- Node.jsのパッケージ管理やLint、テストなどのエコシステムを流用できると尚可
 
 <!-- 
 M5Stackには機能拡張のための多彩なモジュールやユニットがありますが、その制御のコードはArduino、つまりC/C++や、MicroPythonというPythonのサブセットで提供されています。どちらにも馴染みがない場合は、言語の習得自体が物作りのハードルになります。
@@ -325,7 +349,7 @@ M5Stackには機能拡張のための多彩なモジュールやユニットが�
 
 <!-- _class: lead -->
 
-## 【後編】ModdableとEcma-419
+## 【後編】ｽﾀｯｸﾁｬﾝとTypeScript
 
 ---
 
@@ -514,20 +538,6 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ---
 
-### UIフレームワーク「piu」「commodetto」
-
-- Moddableに同梱のUIフレームワーク
-- モダンなUI構築のための機能が全部入り
-  - ✅ 文字/画像
-  - ✅ __アウトライン描画__
-  - ✅ サウンド
-  - ✅ タッチ入力
-  - ✅ アニメーション/トランジション
-  - ✅ レスポンシブ
-  - ✅ コンポーネント指向
-
----
-
 <table>
   <tr>
     <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
@@ -541,9 +551,20 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ---
 
-## ｽﾀｯｸﾁｬﾝ ♥ Moddable SDK
+## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
 
 ![width:80%](assets/images/stack_chan_v_moddable.png)
+
+---
+
+## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
+
+- TypeScript
+- Moddableの組み込み機能
+  - グラフィックス
+  - サウンド
+  - （性能とのトレードオフ）
+- Webのエコシステム
 
 ---
 
@@ -630,6 +651,28 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ---
 
+### グラフィックス
+
+- UIフレームワーク「piu」「commodetto」が同梱
+- モダンなUI構築のための機能が全部入り
+  - 文字/画像
+  - __アウトライン描画__
+  - タッチ入力
+  - アニメーション/トランジション
+  - レスポンシブ
+  - コンポーネント指向
+
+---
+
+### サウンド
+
+- 音声も機能が充実
+  - オーディオ入力/出力
+  - ストリーミング再生
+  - 音声合成クライアント
+
+---
+
 ### 性能とのトレードオフ
 
 <style scoped>
@@ -703,29 +746,34 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ---
 
-## おわりに
+<!-- _class: lead -->
 
-### ミュニティに参加しよう！
-
-- ｽﾀｯｸﾁｬﾝとModdableを中心に様々な活動をしている
-  - ｽﾀｯｸﾁｬﾝコミュニティ
-    - 3歳のお誕生日会の募集もうすぐ
-    - メイカーフェア東京に出展企画中
-    - Moddable版試してみてね！
-  - Moddable日本開発者コミュニティ
-    - Discordでワイワイ
+## 📣宣伝
 
 ---
 
-### Discord
+### 🇯🇵Moddable日本語訳プロジェクト
 
-- ![width:200px](assets/images/qr_stack_chan.png) Stack-chan: https://discord.gg/HamVFhqjS9 
-- ![width:200px](assets/images/qr_moddable.png) Moddable dev JP: https://discord.gg/7vT4Mde9u2
+- Moddableの130以上あるマークダウン文書を日本語訳しよう！
+- OSSコントリビュートのチャンス！
+- Moddableの機能群や内部実装に詳しくなれる！
+
+https://github.com/Moddable-OpenSource/moddable-jp
+
+---
+
+### コミュニティに参加しよう！
+
+* Stack-chan: https://discord.gg/HamVFhqjS9 ![width:160px](assets/images/qr_stack_chan.png)
+  - 3歳のお誕生日会 ... まもなく募集開始
+  - メイカーフェア東京 ... 出展企画中
+
+*  Moddable dev JP: https://discord.gg/7vT4Mde9u2 ![width:160px](assets/images/qr_moddable.png)
 
 ---
 
 ### 参考
 
-- 公式ドキュメント（GitHub）
-- 書籍「IoT Development for ESP32 and ESP8266 with JavaScript: A Practical Guide to XS and the Moddable SDK (English Edition)」
-- 書籍「実践Moddable」
+- [公式ドキュメント（GitHub）](https://github.com/Moddable-OpenSource/moddable-jp)
+- [書籍「IoT Development for ESP32 and ESP8266 with JavaScript: A Practical Guide to XS and the Moddable SDK (English Edition)」](https://www.amazon.co.jp/dp/B08BWY2361)
+- [書籍「実践Moddable」](https://www.amazon.co.jp/dp/B08HGZDCFC#customerReviews)
