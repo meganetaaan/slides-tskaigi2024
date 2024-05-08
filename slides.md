@@ -15,6 +15,13 @@ TypeScriptで作る<br>コミュニケーションロボット
 
 ---
 
+## ゴール
+
+- ｽﾀｯｸﾁｬﾝとオープンソースハードウェアについて知ってもらう
+- 「TypeScriptで組み込み開発」の世界を身近に感じてもらう
+
+---
+
 ## 自己紹介
 
 - ![width:120px](./assets/images/meganetaaan.jpg)ししかわ @meganetaaan
