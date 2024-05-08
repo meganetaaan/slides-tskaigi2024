@@ -56,10 +56,17 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ### ｽﾀｯｸﾁｬﾝの機能
 
+<style scoped>
+  ul {
+    font-size: 0.8em;
+  }
+</style>
+
 - 表情
 - 首振り
-- 発話
 - 対話
+- 音声合成
+- 音声認識（開発中）
 - 顔認識 (開発中)
 
 基本機能の上にユーザアプリケーション（mod）をインストール。
@@ -190,17 +197,41 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 ### オープンな仕様
 
 <style scoped>
+  ul {
+    font-size: 0.8em;
+  }
+  .container {
+    position: relative;
+  }
   .apache {
+    position: absolute;
+    top: -320px;
+    left: 640px;
     width: 500px;
-    height: 300px;
+    height: 240px;
     mask-image: url('assets/images/apache.png');
+  }
+  .resource {
+    display: inline;
+    height:300px;
   }
 </style>
 
 - Apache v2.0 で公開
   - 商用、非商用問わず利用可能
   - 改造＆キット化して販売する人も
-<div class="masked-element apache"></div>
+- オープンソースハードウェア協会（OSHWA）の認定を取得
+
+<div class="container">
+  <div class="masked-element apache"></div>
+</div>
+
+<p>
+<img class="resource" src="assets/images/board.png"></img>
+<img class="resource" src="assets/images/case.jpg"></img>
+<img class="resource" src="assets/images/oshwa.png"></img>
+</p>
+
 <!-- ※厳密にいうと回路や外装のデザインには著作権無いらしいが、製作者のオープンなスタンスを示すために付けている -->
 
 ---
@@ -210,7 +241,7 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 - 製作のようすを細かく発信
   - Twitter #ｽﾀｯｸﾁｬﾝ
   - Hackaday.io
-- 悩みや失敗もオープンに
+- 悩みや失敗もオープンにして敷居を下げる
   - モジャった
   - バグった
   - 基板燃えた
@@ -222,9 +253,15 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 ### オープンなコミュニティ
 
 <style scoped>
+  .container {
+    position: relative;
+  }
   .open-community {
-    width: 100%;
-    height: 80%;
+    position: absolute;
+    top: -380px;
+    left: 640px;
+    width: 500px;
+    height: 480px;
     mask-image: url('assets/images/open_community.png');
   }
 </style>
@@ -234,14 +271,16 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
   - ホビーロボット
   - 生成AI
   - ぬいの者
-- 「AIｽﾀｯｸﾁｬﾝ」の登場でさらに爆発的に拡大
+- 「AIｽﾀｯｸﾁｬﾝ」の登場でさらに拡大
 - DiscordやTwitterで活発に活動中
 
-<div class="open-community">
+<div class="container">
+  <div class="masked-element open-community"></div>
+</div>
 
 ---
 
-### コミュニティの活動: 制作
+### コミュニティの活動: 製作
 
 - 作る
   - キットを購入して組み立てる
@@ -251,6 +290,8 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
   - お外に連れ出す
   - イベントに出展する
 - 🔍[#ｽﾀｯｸﾁｬﾝ](https://twitter.com/search?q=%23%EF%BD%BD%EF%BE%80%EF%BD%AF%EF%BD%B8%EF%BE%81%EF%BD%AC%EF%BE%9D%20OR%20%EF%BD%BD%EF%BE%80%EF%BD%AF%EF%BD%B8%EF%BE%81%EF%BD%AC%EF%BE%9D%20OR%20%23stackchan%20OR%20%22Stack-chan%22&f=media)
+
+![bg right:40%](assets/images/gundam.jpg)
 
 ---
 
@@ -282,7 +323,7 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 ### コミュニティの活動: メイカー系イベント
 
 - メイカーフェアやNT等、各種ものつくり系イベントへの出展
-  - 他のイベントはコミュニティメンバー主導
+  - 多くのイベントはコミュニティメンバー主導
   - 計画的 < ゲリラ的
 
 ---
@@ -341,11 +382,10 @@ ul {
 
 ### 背景：M5Stackサイズのロボットがいたらいいなあ
 
-[](assets/images/avatar.gif)
-
-- 顔だけ作っていた
+- 顔だけ作っていた ![](assets/images/avatar.gif)
   - https://github.com/meganetaaan/m5stack-avatar/
 - M5Stackをロボットの顔にして、手のひらサイズのロボットを作ろう！
+- 色々な場所に連れ出したり、展示したりしたい
 
 ---
 
@@ -374,7 +414,7 @@ LinuxのようなOSを搭載せずFreeRTOSなどのリアルタイムOSを搭載
 
 ---
 
-### Motivation: Web開発者が組み込みやるときのつらみ
+### 背景: Web開発者が組み込みやるときのつらみ
 
 <style scoped>
   .wakannaiyo {
@@ -424,8 +464,9 @@ M5Stackには機能拡張のための多彩なモジュールやユニットが�
 ### 要求をおさらい
 
 - JavaScript(TypeScript)で開発したい
-  - できればフル機能のECMA Script
-- スタンドアロンで動作させたい
+  - Webのエコシステムを活用
+- 屋外や展示会で安定動作してほしい
+  - ネットワーク不要
 - 複数のM5Stackに対応させたい
 
 そんな夢のようなプラットフォームが ...
