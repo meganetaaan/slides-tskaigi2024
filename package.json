@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:html": "mkdir -p assets && cp -R assets build/ && marp build --html ./slides.md -o build/index.html",
+    "build:html": "mkdir -p build/assets && cp -R assets build/ && marp build --html ./slides.md -o build/index.html",
     "serve": "http-server build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

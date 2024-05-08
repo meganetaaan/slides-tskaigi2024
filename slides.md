@@ -15,12 +15,19 @@ TypeScriptで作る<br>コミュニケーションロボット
 
 ---
 
+## ゴール
+
+- ｽﾀｯｸﾁｬﾝとオープンソースハードウェアについて知ってもらう
+- 「TypeScriptで組み込み開発」の世界を身近に感じてもらう
+
+---
+
 ## 自己紹介
 
 - ![width:120px](./assets/images/meganetaaan.jpg)ししかわ @meganetaaan
-  - Twitterのアカウントを凍結されている
-  - ｽﾀｯｸﾁｬﾝを作っている
-- ![width:120px](./assets/images/stack_chan_twitter.jpg)ｽﾀｯｸﾁｬﾝ [@stack_chan](https://twitter.com/stack_chan)
+  * Twitterのアカウントを永久凍結されている
+  * ｽﾀｯｸﾁｬﾝを作っている
+* ![width:120px](./assets/images/stack_chan_twitter.jpg)ｽﾀｯｸﾁｬﾝ [@stack_chan](https://twitter.com/stack_chan)
 
 ---
 
@@ -54,6 +61,9 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 - 発話
 - 対話
 - 顔認識 (開発中)
+
+基本機能の上にユーザアプリケーション（mod）をインストール。
+ユーザが自由にふるまいをプログラミングできる。
 
 ![bg height:100% right:30%](assets/images/cheerup.gif)
 
@@ -308,44 +318,6 @@ ul {
 ![bg](assets/images/mfshenzhen2.jpg)
 
 ---
-### ｽﾀｯｸﾁｬﾝはTypeScriptで動く
-
-- ｽﾀｯｸﾁｬﾝ本体で動くソースコードはすべてModdable
-  - 音声合成
-  - 顔とemoticonの描画
-  - 対話管理（ChatGPT4やClaude3に対応）
-  - モータードライバ
-  - 上記機能の初期化や設定処理
-
----
-
-### なぜTypeScript？
-
-- 自分が必要だったから
-  - ししかわは元々Web開発者->ロボットベンチャー
-- C/C++のベストプラクティスと組み込み開発の知識を両方やらないといけなくて大変厳しい
-- 「使い慣れた言語で開発がしたい」「もう環境が来い」
-- Node.jsのパッケージ管理やLint、テストなどのエコシステムを流用できると尚可
-
-<!-- 
-M5Stackには機能拡張のための多彩なモジュールやユニットがありますが、その制御のコードはArduino、つまりC/C++や、MicroPythonというPythonのサブセットで提供されています。どちらにも馴染みがない場合は、言語の習得自体が物作りのハードルになります。
--->
-
----
-
-### 使い方
-
-- 基本機能の「ホスト」の上にユーザアプリケーションの「mod」を使ってもらう
-  - マイクラとかPCゲームをする人には馴染み深い単語。ユーザが定義できる拡張機能。
-- 音声合成、対話管理などの機能モジュールごとにインタフェースを定義して実装。設定ファイルで置き換え可能にしてある
-
----
-
-### Disclaimer: Moddable版ｽﾀｯｸﾁｬﾝは開発途上
-
-- Arduinoが8割、Moddableが2割程度
-
----
 
 <!-- _class: lead -->
 
@@ -353,11 +325,36 @@ M5Stackには機能拡張のための多彩なモジュールやユニットが�
 
 ---
 
-### マイコンの世界
+### ｽﾀｯｸﾁｬﾝはTypeScriptで動く
+
+- ｽﾀｯｸﾁｬﾝ本体で動くソースコードはほぼすべてTypeScript
+  - 顔の描画
+  - 音声合成
+  - 対話管理（ChatGPT4やClaude3との通信）
+  - モータードライバ
+  - 上記機能の初期化や設定処理
+
+- _Disclaimer: TypeScript版ｽﾀｯｸﾁｬﾝは開発途上_
+  - 世に出ているｽﾀｯｸﾁｬﾝの8割はArduino(C/C++)、2割がその他(TypeScriptやUIFlow)
+
+---
+
+### 背景：M5Stackサイズのロボットがいたらいいなあ
+
+[](assets/images/avatar.gif)
+
+- 顔だけ作っていた
+  - https://github.com/meganetaaan/m5stack-avatar/
+- M5Stackをロボットの顔にして、手のひらサイズのロボットを作ろう！
+
+---
+
+### 背景：マイコンの世界へようこそ
 
 - 小型、軽量、低コスト
 - 計算リソースが限られている
 - リアルタイム処理が得意（FreeRTOSなど）
+- ハードウェアプロトコル（GPIO、I2C、SPI ...）を駆使する
 
 <style scoped>
 table {
@@ -374,6 +371,71 @@ table {
 ラズパイなどのシングルボードコンピュータに比べて非常に小型で、その分計算リソースが限られています。
 LinuxのようなOSを搭載せずFreeRTOSなどのリアルタイムOSを搭載します。
 -->
+
+---
+
+### Motivation: Web開発者が組み込みやるときのつらみ
+
+<style scoped>
+  .wakannaiyo {
+    margin-left: 300px;
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/wakannaiyo.png');
+  }
+  ul {
+    font-size: 0.7em;
+  }
+  .comment {
+    float: left;
+    font-size: 0.6em;
+  }
+</style>
+
+- 組み込み始めたてのししかわ（SIerのR&DでWeb開発->ロボットベンチャー）
+- C/C++のベストプラクティスと組み込み開発の知識を両方やらないといけなくて大変厳しい
+
+<p class="comment">C/C++ 組み込み　わかんないよ！！！</p>
+<div class="masked-element wakannaiyo"></div>
+
+---
+
+<style scoped>
+  .all-js {
+    width: 100%;
+    height: 80%;
+    mask-image: url('assets/images/all_js.png');
+  }
+  .ul {
+    font-size: 0.8em;
+  }
+</style>
+
+- 「使い慣れた言語で開発がしたい」 __「もう環境が来い」__
+- Node.jsのパッケージ管理やLint、テストなどのエコシステムを流用できると尚可
+
+<div class="masked-element all-js"></div>
+<!-- 
+M5Stackには機能拡張のための多彩なモジュールやユニットがありますが、その制御のコードはArduino、つまりC/C++や、MicroPythonというPythonのサブセットで提供されています。どちらにも馴染みがない場合は、言語の習得自体が物作りのハードルになります。
+-->
+
+---
+
+### 要求をおさらい
+
+- JavaScript(TypeScript)で開発したい
+  - できればフル機能のECMA Script
+- スタンドアロンで動作させたい
+- 複数のM5Stackに対応させたい
+
+そんな夢のようなプラットフォームが ...
+
+---
+
+### あった
+
+![](assets/images/blue-moddable.png)
+
 ---
 
 ### Moddable SDK
@@ -461,6 +523,11 @@ npx xs-dev setup --device esp32
 
 ### Ecma-419: ハードウェア
 
+<style scoped>
+  ul {
+    font-size: 0.9em;
+  }
+</style>
 - ハードウェアプロトコル
   - Digital/Analog
   - PWM
@@ -538,19 +605,6 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ---
 
-<table>
-  <tr>
-    <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
-    <td>トランジション<br><img src="assets/images/piu_transition.gif"></img></td>
-  </tr>
-  <tr>
-    <td>スクロール<br><img src="assets/images/piu_scroll.gif"></img></td>
-    <td>国際化<br><img src="assets/images/piu_i18n.gif"></img></td>
-  </tr>
-</table>
-
----
-
 ## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
 
 ![width:80%](assets/images/stack_chan_v_moddable.png)
@@ -559,7 +613,7 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
 
-- TypeScript
+- __TypeScript__
 - Moddableの組み込み機能
   - グラフィックス
   - サウンド
@@ -636,6 +690,12 @@ export type Renderer = {
 
 <div class="masked-element mod"></div>
 
+<!--
+- 基本機能の「ホスト」の上にユーザアプリケーションの「mod」を使ってもらう
+  - マイクラとかPCゲームをする人には馴染み深い単語。ユーザが定義できる拡張機能。
+- 音声合成、対話管理などの機能モジュールごとにインタフェースを定義して実装。設定ファイルで置き換え可能にしてある
+-->
+
 ---
 
 ### さらに：Pull Requestももらえた🚀
@@ -651,6 +711,17 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ---
 
+## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
+
+- TypeScript
+- __Moddableの組み込み機能__
+  - グラフィックス
+  - サウンド
+  - （性能とのトレードオフ）
+- Webのエコシステム
+
+---
+
 ### グラフィックス
 
 - UIフレームワーク「piu」「commodetto」が同梱
@@ -661,6 +732,19 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
   - アニメーション/トランジション
   - レスポンシブ
   - コンポーネント指向
+
+---
+
+<table>
+  <tr>
+    <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
+    <td>トランジション<br><img src="assets/images/piu_transition.gif"></img></td>
+  </tr>
+  <tr>
+    <td>スクロール<br><img src="assets/images/piu_scroll.gif"></img></td>
+    <td>国際化<br><img src="assets/images/piu_i18n.gif"></img></td>
+  </tr>
+</table>
 
 ---
 
@@ -689,6 +773,17 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
   - もちろんこのような関数に対しても型定義が用意されているし、自作も可能
 
 ![bg width:100% right](assets/images/xsbug.png)
+
+---
+
+## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
+
+- TypeScript
+- Moddableの組み込み機能
+  - グラフィックス
+  - サウンド
+  - （性能とのトレードオフ）
+- __Webのエコシステム__
 
 ---
 
@@ -727,7 +822,7 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ---
 
-### まとめ：Moddableを使うとどうなるか
+### まとめ：ｽﾀｯｸﾁｬﾝとModdable(TypeScript)が出会ったら
 
 - 操作性/学習性（Usability）↑↑↑
   - Web開発者がマイコンで動くアプリを開発できる
@@ -737,6 +832,8 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
   - PCでデバッグ
 - 性能効率（Performance Efficiency）↓
   - C APIで補う
+- ワクワク感↑↑↑
+  - Webのエコシステムと接続して広がる可能性！
 
 <!--
 その他
