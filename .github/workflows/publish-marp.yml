@@ -26,7 +26,7 @@ jobs:
       - name: Build HTML
         uses: docker://marpteam/marp-cli:v3.0.2
         with:
-          args: --html slides.md -o build/index.html
+          args: --title="ｽﾀｯｸﾁｬﾝ TypeScriptでつくるオープンソースロボット" --description=\"tskaigi2024 発表資料\" --url=\"https://meganetaaan.github.io/slides-tskaigi2024/\" --author "ししかわ" --og-image https://meganetaaan.github.io/slides-tskaigi2024/assets/images/in_your_hands.jpg --bespoke.progress true --html slides.md -o build/index.html
         env:
           MARP_USER: root:root
       - name: Deploy preview
