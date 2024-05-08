@@ -25,9 +25,9 @@ TypeScriptで作る<br>コミュニケーションロボット
 ## 自己紹介
 
 - ![width:120px](./assets/images/meganetaaan.jpg)ししかわ @meganetaaan
-  - Twitterのアカウントを凍結されている
-  - ｽﾀｯｸﾁｬﾝを作っている
-- ![width:120px](./assets/images/stack_chan_twitter.jpg)ｽﾀｯｸﾁｬﾝ [@stack_chan](https://twitter.com/stack_chan)
+  * Twitterのアカウントを永久凍結されている
+  * ｽﾀｯｸﾁｬﾝを作っている
+* ![width:120px](./assets/images/stack_chan_twitter.jpg)ｽﾀｯｸﾁｬﾝ [@stack_chan](https://twitter.com/stack_chan)
 
 ---
 
@@ -328,14 +328,14 @@ ul {
 ### ｽﾀｯｸﾁｬﾝはTypeScriptで動く
 
 - ｽﾀｯｸﾁｬﾝ本体で動くソースコードはほぼすべてTypeScript
+  - 顔の描画
   - 音声合成
-  - 顔とemoticonの描画
-  - 対話管理（ChatGPT4やClaude3に対応）
+  - 対話管理（ChatGPT4やClaude3との通信）
   - モータードライバ
   - 上記機能の初期化や設定処理
 
 - _Disclaimer: TypeScript版ｽﾀｯｸﾁｬﾝは開発途上_
-  - Arduino(C/C++)が8割、TypeScriptが2割程度
+  - 世に出ているｽﾀｯｸﾁｬﾝの8割はArduino(C/C++)、2割がその他(TypeScriptやUIFlow)
 
 ---
 
@@ -605,19 +605,6 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ---
 
-<table>
-  <tr>
-    <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
-    <td>トランジション<br><img src="assets/images/piu_transition.gif"></img></td>
-  </tr>
-  <tr>
-    <td>スクロール<br><img src="assets/images/piu_scroll.gif"></img></td>
-    <td>国際化<br><img src="assets/images/piu_i18n.gif"></img></td>
-  </tr>
-</table>
-
----
-
 ## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
 
 ![width:80%](assets/images/stack_chan_v_moddable.png)
@@ -626,7 +613,7 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 
 ## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
 
-- TypeScript
+- __TypeScript__
 - Moddableの組み込み機能
   - グラフィックス
   - サウンド
@@ -724,6 +711,17 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ---
 
+## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
+
+- TypeScript
+- __Moddableの組み込み機能__
+  - グラフィックス
+  - サウンド
+  - （性能とのトレードオフ）
+- Webのエコシステム
+
+---
+
 ### グラフィックス
 
 - UIフレームワーク「piu」「commodetto」が同梱
@@ -734,6 +732,19 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
   - アニメーション/トランジション
   - レスポンシブ
   - コンポーネント指向
+
+---
+
+<table>
+  <tr>
+    <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
+    <td>トランジション<br><img src="assets/images/piu_transition.gif"></img></td>
+  </tr>
+  <tr>
+    <td>スクロール<br><img src="assets/images/piu_scroll.gif"></img></td>
+    <td>国際化<br><img src="assets/images/piu_i18n.gif"></img></td>
+  </tr>
+</table>
 
 ---
 
@@ -762,6 +773,17 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
   - もちろんこのような関数に対しても型定義が用意されているし、自作も可能
 
 ![bg width:100% right](assets/images/xsbug.png)
+
+---
+
+## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
+
+- TypeScript
+- Moddableの組み込み機能
+  - グラフィックス
+  - サウンド
+  - （性能とのトレードオフ）
+- __Webのエコシステム__
 
 ---
 
@@ -800,7 +822,7 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ---
 
-### まとめ：Moddableを使うとどうなるか
+### まとめ：ｽﾀｯｸﾁｬﾝとModdable(TypeScript)が出会ったら
 
 - 操作性/学習性（Usability）↑↑↑
   - Web開発者がマイコンで動くアプリを開発できる
@@ -810,6 +832,8 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
   - PCでデバッグ
 - 性能効率（Performance Efficiency）↓
   - C APIで補う
+- ワクワク感↑↑↑
+  - Webのエコシステムと接続して広がる可能性！
 
 <!--
 その他
