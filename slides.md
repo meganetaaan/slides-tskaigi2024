@@ -382,18 +382,52 @@ ul {
   - 対話管理（ChatGPT4やClaude3との通信）
   - モータードライバ
   - 上記機能の初期化や設定処理
-
 - _Disclaimer: TypeScript版ｽﾀｯｸﾁｬﾝは開発途上_
   - 世に出ているｽﾀｯｸﾁｬﾝの8割はArduino(C/C++)、2割がその他(TypeScriptやUIFlow)
 
 ---
 
-### 背景：M5Stackサイズのロボットがいたらいいなあ
+### 背景：こんなロボットを作りたい
 
-- 顔だけ作っていた ![](assets/images/avatar.gif)
-  - https://github.com/meganetaaan/m5stack-avatar/
-- M5Stackをロボットの顔にして、手のひらサイズのロボットを作ろう！
+- 手のひらサイズにしたい！
+- シンプルな構成で誰でも作れるようにしたい
 - 色々な場所に連れ出したり、展示したりしたい
+- [M5Stack](https://m5stack.com/) はロボットのお顔としても最適では？
+  - https://github.com/meganetaaan/m5stack-avatar/
+![](assets/images/avatar.gif)
+
+---
+
+### 背景：こんなロボットを作りたい
+
+<style scoped>
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .arch1 {
+    position: absolute;
+    width: 600px;
+    height: 100%;
+    top: -50px;
+    left: 600px;
+    mask-image: url('assets/images/arch1.png');
+  }
+  .arch2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 100px;
+    left: 50px;
+    mask-image: url('assets/images/arch2.png');
+  }
+</style>
+
+<div class="container">
+  <div class="masked-element arch1"></div>
+  <div class="masked-element arch2"></div>
+</div>
 
 ---
 
