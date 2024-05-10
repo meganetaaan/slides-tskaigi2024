@@ -9,7 +9,7 @@ paginate: true
 
 <!-- _class: lead -->
 
-TypeScriptで作る<br>コミュニケーションロボット
+TypeScriptで作る<br>オープンソースロボット
 
 ![bg left:63%](./assets/images/in_your_hands.jpg)
 
