@@ -9,7 +9,7 @@ paginate: true
 
 <!-- _class: lead -->
 
-TypeScriptで作る<br>コミュニケーションロボット
+TypeScriptで作る<br>オープンソースロボット
 
 ![bg left:63%](./assets/images/in_your_hands.jpg)
 
@@ -89,7 +89,15 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ### AIｽﾀｯｸﾁｬﾝ
 
+<style scoped>
+  .footnote {
+    font-size: 0.5em;
+  }
+</style>
+
 <iframe width="800" height="500" src="https://www.youtube.com/embed/6lO3xe_12So?si=xoEuPlS9BXM_HPNp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<div class="footnote">VOICEVOX: ずんだもん</div>
 
 ---
 
@@ -374,18 +382,52 @@ ul {
   - 対話管理（ChatGPT4やClaude3との通信）
   - モータードライバ
   - 上記機能の初期化や設定処理
-
 - _Disclaimer: TypeScript版ｽﾀｯｸﾁｬﾝは開発途上_
   - 世に出ているｽﾀｯｸﾁｬﾝの8割はArduino(C/C++)、2割がその他(TypeScriptやUIFlow)
 
 ---
 
-### 背景：M5Stackサイズのロボットがいたらいいなあ
+### 背景：こんなロボットを作りたい
 
-- 顔だけ作っていた ![](assets/images/avatar.gif)
-  - https://github.com/meganetaaan/m5stack-avatar/
-- M5Stackをロボットの顔にして、手のひらサイズのロボットを作ろう！
+- 手のひらサイズにしたい！
+- シンプルな構成で誰でも作れるようにしたい
 - 色々な場所に連れ出したり、展示したりしたい
+- [M5Stack](https://m5stack.com/) はロボットのお顔としても最適では？
+  - https://github.com/meganetaaan/m5stack-avatar/
+![](assets/images/avatar.gif)
+
+---
+
+### 背景：こんなロボットを作りたい
+
+<style scoped>
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .arch1 {
+    position: absolute;
+    width: 600px;
+    height: 100%;
+    top: -50px;
+    left: 600px;
+    mask-image: url('assets/images/arch1.png');
+  }
+  .arch2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 100px;
+    left: 50px;
+    mask-image: url('assets/images/arch2.png');
+  }
+</style>
+
+<div class="container">
+  <div class="masked-element arch1"></div>
+  <div class="masked-element arch2"></div>
+</div>
 
 ---
 
@@ -463,11 +505,13 @@ M5Stackには機能拡張のための多彩なモジュールやユニットが�
 
 ### 要求をおさらい
 
+- M5Stack（マイコン）に対応させたい
 - JavaScript(TypeScript)で開発したい
-  - Webのエコシステムを活用
-- 屋外や展示会で安定動作してほしい
-  - ネットワーク不要
-- 複数のM5Stackに対応させたい
+  - モーターやセンサを駆動したい
+  - グラフィックスやサウンドもほしい
+  - Webのエコシステムを活用できれば尚可
+- 外部サービスと連携したい
+  - 一方オフラインでも動作させたい
 
 そんな夢のようなプラットフォームが ...
 
@@ -658,7 +702,7 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 - Moddableの組み込み機能
   - グラフィックス
   - サウンド
-  - （性能とのトレードオフ）
+- 性能とのトレードオフ
 - Webのエコシステム
 
 ---
@@ -758,7 +802,7 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 - __Moddableの組み込み機能__
   - グラフィックス
   - サウンド
-  - （性能とのトレードオフ）
+- 性能とのトレードオフ
 - Webのエコシステム
 
 ---
@@ -798,6 +842,17 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ---
 
+## ｽﾀｯｸﾁｬﾝ ♡ Moddable SDK
+
+- TypeScript
+- Moddableの組み込み機能
+  - グラフィックス
+  - サウンド
+- __性能とのトレードオフ__
+- Webのエコシステム
+
+---
+
 ### 性能とのトレードオフ
 
 <style scoped>
@@ -823,7 +878,7 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 - Moddableの組み込み機能
   - グラフィックス
   - サウンド
-  - （性能とのトレードオフ）
+- 性能とのトレードオフ
 - __Webのエコシステム__
 
 ---
@@ -843,6 +898,9 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 ### npm
 
 - Moddableのパッケージ管理ツール `mcpack` 経由で利用可能
+- ただし既存のパッケージは動作しないものが多い
+  - ブラウザ/Node.jsの機能を使っている
+  - 性能的な制約
 
 ---
 
@@ -865,11 +923,18 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
 
 ### まとめ：ｽﾀｯｸﾁｬﾝとModdable(TypeScript)が出会ったら
 
+<style scoped>
+  ul {
+    font-size: 0.8em;
+  }
+</style>
+
 - 操作性/学習性（Usability）↑↑↑
   - Web開発者がマイコンで動くアプリを開発できる
   - TypeScriptの恩恵でチーム開発も捗る
 - 相互運用性↑↑
-  - 異なる種類のM5Stackに対応
+  - 標準化されたAPI
+  - M5Stackなど様々なマイコンに対応
   - PCでデバッグ
 - 性能効率（Performance Efficiency）↓
   - C APIで補う
