@@ -89,7 +89,15 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 
 ### AIｽﾀｯｸﾁｬﾝ
 
+<style scoped>
+  .footnote {
+    font-size: 0.5em;
+  }
+</style>
+
 <iframe width="800" height="500" src="https://www.youtube.com/embed/6lO3xe_12So?si=xoEuPlS9BXM_HPNp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<div class="footnote">VOICEVOX: ずんだもん</div>
 
 ---
 
