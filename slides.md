@@ -225,7 +225,8 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
   }
 </style>
 
-- Apache v2.0 で公開
+- 全てのリソースを Apache v2.0 で公開
+  - ケース、基板、ソフトすべて
   - 商用、非商用問わず利用可能
   - 改造＆キット化して販売する人も
 - オープンソースハードウェア協会（OSHWA）の認定を取得
@@ -323,6 +324,14 @@ Stack-chanの名前の由来は、IoT開発モジュールのM5Stackに、日本
 - 2歳の誕生日
 - ⏫参加者50人
 - ｽﾀｯｸﾁｬﾝピニャータを割ってお祝い！
+
+<br>
+<br>
+<br>
+<br>
+
+今年は 7/14（日）
+開催予定🎂
 
 ![bg right:60%](assets/images/birthday_2nd.jpg)
 
@@ -525,19 +534,54 @@ M5Stackには機能拡張のための多彩なモジュールやユニットが�
 
 ### Moddable SDK
 
+<style scoped>
+  ul {
+    font-size: 0.9em;
+  }
+</style>
+
 ![moddable height:160px](assets/images/blue-moddable.png)
 
+https://moddable.com/
+
 - 組み込み向けJavaScript開発プラットフォーム
+  - JSエンジン「xs」
+  - xsの上で動作するモジュール群
+  - コンパイラやデバッガなどの開発ツール
+- OSS (混合ライセンス)
+
+---
+
+### 環境構築
+
+- Node.js >= v16
+- あとは`xs-dev`で一発
+  - https://xs-dev.js.org/
+
+```
+npx xs-dev setup
+npx xs-dev setup --device esp32
+```
+
+- 関連ツールが`$HOME/.local/share/`にインストールされる
+  - 合計2GBくらいあるので注意
+
+---
+
+### Moddable SDKの特徴
+
+- マイコン上でJavaScriptエンジンが動作する「スタンドアロン型」
 - 最新のJavaScript（ECMAScript）に準拠
+- 標準化された組み込み向けJavaScript API「Ecma-419」
+  - __TypeScriptに対応__
 - マルチデバイス対応
   - M5StackシリーズやRaspberry Pi Picoなどで動作
-- __TypeScriptに対応__
 
 <!--
 最新のJavaScript（ECMAScript）に対応している：ModdableのJavaScriptエンジン「xs」は最新のECMAScriptに対応しています。つまりM5Stackの中でフル機能のJavaScriptが使えます。const、letやオブジェクトの分割代入、async、awaitまで揃っています。もしWebと連携する何かをM5Stackで作りたいなら、サーバ側のコードも、M5StackのコードもすべてJavaScriptで統一することだって可能です。
 -->
 <!--
-家電の操作画面に採用された（冷蔵庫、マッサージガン、カメラ）
+ちなみに、家電の操作画面に採用された（洗濯機、マッサージガン、カメラ）
 -->
 
 ---
@@ -583,26 +627,14 @@ class Counter {
 
 ---
 
-### Moddable SDKの環境構築
-
-- Node.js >= v16
-- あとは`xs-dev`で一発
-  - https://xs-dev.js.org/
-
-```
-npx xs-dev setup
-npx xs-dev setup --device esp32
-```
-
-- 関連ツールが`$HOME/.local/share/`にインストールされる
-
----
-
 ### Ecma-419
 
+https://419.ecma-international.org/
+
 - 組み込みシステム向けAPIの仕様
-- https://419.ecma-international.org/
-- Moddableで実装されている
+  - ハードウェア
+  - ネットワーク
+- Moddableで[JS](https://github.com/Moddable-OpenSource/moddable/tree/public/modules/io) + [型定義](https://github.com/Moddable-OpenSource/moddable/tree/public/typings)の形で実装されている
 
 ---
 
@@ -687,6 +719,28 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 	trace("\n");
 });
 ```
+
+<!-- ここで会場どよめく -->
+
+---
+
+### 標準化していると何が嬉しいの？
+
+- オープンな場所（[TC53](https://ecma-international.org/technical-committees/tc53/)）で議論された、安定したAPI
+- Moddable以外の「組み込み向けJavaScriptプラットフォーム」との相互運用性（が生まれるといいな〜〜ﾁﾗｯﾁﾗｯ）
+
+---
+
+### マルチデバイス対応
+
+- M5Stackの様々なデバイスに対応
+  - M5Atom
+  - M5StickC
+  - M5Stack
+  - M5Stack Core2
+  - M5Stack CoreS3
+
+![bg right](assets/images/multi_device.png)
 
 ---
 
@@ -824,12 +878,14 @@ GitHubの使い方やOSSの振る舞いを心得ているWeb開発者を開発�
   <tr>
     <td>ドラッグ＆ドロップ<br><img src="assets/images/piu_dnd.gif"></img></td>
     <td>トランジション<br><img src="assets/images/piu_transition.gif"></img></td>
-  </tr>
-  <tr>
+  <!-- </tr>
+  <tr> -->
     <td>スクロール<br><img src="assets/images/piu_scroll.gif"></img></td>
     <td>国際化<br><img src="assets/images/piu_i18n.gif"></img></td>
   </tr>
 </table>
+
+![](assets/images/outline.gif)アウトライン描画！
 
 ---
 
@@ -967,8 +1023,8 @@ https://github.com/Moddable-OpenSource/moddable-jp
 
 ### コミュニティに参加しよう！
 
-* Stack-chan: https://discord.gg/HamVFhqjS9 ![width:160px](assets/images/qr_stack_chan.png)
-  - 3歳のお誕生日会 ... まもなく募集開始
+- Stack-chan: https://discord.gg/HamVFhqjS9 ![width:160px](assets/images/qr_stack_chan.png)
+  - 3歳のお誕生日会（7/14） ... まもなく募集開始
   - メイカーフェア東京 ... 出展企画中
 
 *  Moddable dev JP: https://discord.gg/7vT4Mde9u2 ![width:160px](assets/images/qr_moddable.png)
