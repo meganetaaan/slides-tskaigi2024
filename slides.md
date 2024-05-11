@@ -634,7 +634,7 @@ https://419.ecma-international.org/
 - 組み込みシステム向けAPIの仕様
   - ハードウェア
   - ネットワーク
-- Moddableで実装されている
+- Moddableで[JS](https://github.com/Moddable-OpenSource/moddable/tree/public/modules/io) + [型定義](https://github.com/Moddable-OpenSource/moddable/tree/public/typings)の形で実装されている
 
 ---
 
@@ -721,6 +721,13 @@ fetch("http://httpbin.org/post", { method:"POST", headers, body })
 ```
 
 <!-- ここで会場どよめく -->
+
+---
+
+### 標準化していると何が嬉しいの？
+
+- オープンな場所（[TC53](https://ecma-international.org/technical-committees/tc53/)）で議論された、安定したAPI
+- Moddable以外の「組み込み向けJavaScriptプラットフォーム」との相互運用性（が生まれるといいな〜〜ﾁﾗｯﾁﾗｯ）
 
 ---
 
