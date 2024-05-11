@@ -1027,7 +1027,7 @@ https://github.com/Moddable-OpenSource/moddable-jp
   - 3歳のお誕生日会（7/14） ... まもなく募集開始
   - メイカーフェア東京 ... 出展企画中
 
-*  Moddable dev JP: https://discord.gg/7vT4Mde9u2 ![width:160px](assets/images/qr_moddable.png)
+-  Moddable dev JP: https://discord.gg/7vT4Mde9u2 ![width:160px](assets/images/qr_moddable.png)
 
 ---
 
